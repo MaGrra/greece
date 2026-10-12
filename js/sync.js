@@ -56,14 +56,18 @@ async function pull() {
     const d = await r.json();
     if (!d.ok) throw new Error(d.error || 'Sync failed');
     const next = { settings: d.settings || {}, notes: d.notes || {}, expenses: d.expenses || [] };
-    const changed = JSON.stringify(next) !== JSON.stringify(remote);
+    const changed = JSON.stringify(next) !== JSON.stringify(remote) || !lastSync || lastError;
     remote = next;
     lastSync = Date.now(); lastError = null; save();
     busy = false;
     if (changed) emit();
     return;
-  } catch (e) { lastError = String(e.message || e); }
-  busy = false;
+  } catch (e) {
+    const first = !lastError;
+    lastError = String(e.message || e);
+    busy = false;
+    if (first) emit();
+  }
 }
 
 async function flush() {
