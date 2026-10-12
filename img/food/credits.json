@@ -15,9 +15,9 @@
     "source": "https://commons.wikimedia.org/wiki/File:Taramosalata01.jpg"
   },
   "melitzanosalata": {
-    "author": "Badseed",
-    "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Eggplant_salad.JPG"
+    "author": "Alpha (avlxyz)",
+    "license": "CC BY-NC 2.0",
+    "source": "https://www.flickr.com/photos/10559879@N00/54148522470"
   },
   "fava": {
     "author": "Waldviertler",
@@ -153,5 +153,30 @@
     "author": "Udm",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Ouzo.jpg"
+  },
+  "keftedes": {
+    "author": "Natalia Gusakova",
+    "license": "Unsplash License",
+    "source": "https://unsplash.com/photos/a-white-plate-topped-with-meatballs-and-vegetables-i-wwhdINcjc"
+  },
+  "lalangia": {
+    "author": "Dianeira",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tiganides_Manis_(lalaggia).jpg"
+  },
+  "mountaintea": {
+    "author": "Kukuvaja Feinkost",
+    "license": "Unsplash License",
+    "source": "https://unsplash.com/photos/brown-liquid-in-clear-glass-mug-x4_ZqAkrovs"
+  },
+  "paidakia": {
+    "author": "Gatorfan252525",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lamb_Chops_from_a_Greek_restaurant_in_Fort_Lauderdale,_Florida.jpg"
+  },
+  "bougatsa": {
+    "author": "Andy Li",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bougatsa_(with_vannila_custard)_-_IL.FOXO_2026-02-13.jpg"
   }
 }
