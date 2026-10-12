@@ -7,8 +7,7 @@ Plain static site (no build step), hosted on GitHub Pages, with shared data in a
 
 ## 1. Publish on GitHub Pages
 
-1. One time: repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-2. Every push to `main` runs `.github/workflows/pages.yml` and publishes the site to `https://magrra.github.io/greece/`.
+Pages is set to **Deploy from a branch → main / root**, so every push to `main` updates `https://magrra.github.io/greece/` within a minute or two. `.nojekyll` tells GitHub to serve the files as they are.
 
 ## 2. Connect the Google Sheet (shared notes, day order, expenses)
 

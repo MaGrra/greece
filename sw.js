@@ -1,6 +1,6 @@
 // Offline support. Code and data: network first (fresh when online), cache when offline.
 // Audio, photos, fonts and map tiles: cache first.
-const VERSION = '__BUILD__';
+const VERSION = '2026-10-12'; // bump to clear old offline copies of the app shell
 const SHELL = 'shell-' + VERSION;
 const MEDIA = 'media-v1';
 const TILES = 'tiles-v1';
