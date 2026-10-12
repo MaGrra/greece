@@ -1,0 +1,9 @@
+{
+  "name": "greece-trip",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "audio": "node tools/export_tts.mjs && python3 tools/gen_audio.py"
+  }
+}

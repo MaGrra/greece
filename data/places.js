@@ -1,0 +1,221 @@
+// Every place the app knows about. `lv` is the Latvian narration (audio/places/<id>.mp3).
+// kind: sight | beach | town | food | stay | extra
+const W = 'https://en.wikipedia.org/wiki/';
+
+export const PLACES = {
+  'stay-athens': { name: 'Athens stay', el: 'Ardittou 36', kind: 'stay', lat: 37.9677986, lng: 23.7365704, maps: 'Ardittou 36, Athens' },
+  'stay-base': { name: 'Paralia Verga stay', el: 'Παραλία Βέργας', kind: 'stay', lat: 37.0049261, lng: 22.1557826 },
+  'parking-athens': { name: 'Parking, Anapafseos 10', kind: 'stay', lat: 37.966789, lng: 23.734065 },
+
+  stadium: {
+    name: 'Panathenaic Stadium', el: 'Καλλιμάρμαρο', kind: 'sight', lat: 37.9683342, lng: 23.7411118, link: W + 'Panathenaic_Stadium',
+    blurb: 'A horseshoe of white marble seats, rebuilt for the first modern Olympics in 1896 on the site of an ancient stadium.',
+    facts: ['It’s the only stadium in the world built entirely of marble. Locals call it Kallimarmaro, “beautiful marble”.', 'The opening ceremony of the first modern Olympics was held here in 1896.', 'The Olympic flame is handed over here to each new host country, and the Athens Marathon finishes here every year.'],
+    lv: 'Panatēnaju stadions jeb Kallimarmaro. Balta marmora sēdvietu pakavs, kas 1896. gadā tika atjaunots pirmajām mūsdienu olimpiskajām spēlēm senā stadiona vietā. Tas ir vienīgais stadions pasaulē, kas pilnībā būvēts no marmora, tāpēc vietējie to sauc par Kallimarmaro – „skaistais marmors“. Šeit 1896. gadā notika pirmo mūsdienu olimpisko spēļu atklāšanas ceremonija. Šeit olimpiskā uguns tiek nodota katrai nākamajai rīkotājvalstij, un šeit katru gadu finišē Atēnu maratons.',
+  },
+  zappeion: {
+    name: 'Zappeion and National Garden', el: 'Ζάππειο', kind: 'sight', lat: 37.9725878, lng: 23.737433, link: W + 'National_Garden,_Athens',
+    blurb: 'A shady park behind Parliament with a duck pond and café, opening at its south end onto the neoclassical Zappeion Hall.',
+    facts: ['Queen Amalia commissioned the garden in 1838. Her gardener brought in more than 500 plant species, plus peacocks, ducks and turtles.', 'The Zappeion was the first building put up specifically for the revival of the Olympic Games, and it hosted fencing in 1896.', 'Greece signed its treaty to join the European Communities inside the Zappeion in 1979.'],
+    lv: 'Zapejons un Nacionālais dārzs. Ēnains parks aiz parlamenta ēkas ar pīļu dīķi un kafejnīcu, kura dienvidu galā atrodas neoklasiskā Zapejona zāle. Dārzu 1838. gadā lika ierīkot karaliene Amālija. Viņas dārznieks ieveda vairāk nekā piecsimt augu sugu, kā arī pāvus, pīles un bruņurupučus. Zapejons bija pirmā ēka, kas tika uzcelta tieši olimpisko spēļu atdzimšanai, un 1896. gadā tajā notika paukošanas sacensības. 1979. gadā Grieķija tieši Zapejonā parakstīja līgumu par pievienošanos Eiropas Kopienām.',
+  },
+  syntagma: {
+    name: 'Syntagma Square', el: 'Σύνταγμα', kind: 'extra', lat: 37.9755253, lng: 23.7349038, link: W + 'Syntagma_Square',
+    blurb: 'Athens’ central square, in front of the Parliament building, which was once the royal palace. The Evzones guard the Tomb of the Unknown Soldier below it.',
+    facts: ['Syntagma means “Constitution”. An uprising on 3 September 1843 forced King Otto to grant one, and the square was renamed after it.', 'The guard changes every hour on the hour. On Sundays at 11:00 there’s a big ceremony with a band.', 'Each guard’s clog (tsarouchi) weighs about 3 kg, with at least 60 nails in the sole. The story that the kilt has 400 pleats, one for each year of Ottoman rule, is probably a legend.'],
+    lv: 'Sintagmas laukums. Atēnu centrālais laukums iepretim parlamenta ēkai, kas kādreiz bija karaļa pils. Sintagma nozīmē „konstitūcija“: 1843. gada 3. septembrī sacelšanās piespieda karali Otonu pieņemt konstitūciju, un laukums tika pārdēvēts tās vārdā. Pie Nezināmā kareivja kapa sardzi tur evzoni – prezidenta gvarde. Sardze mainās katru stundu, bet svētdienās pulksten vienpadsmitos notiek lielā ceremonija ar orķestri. Katra sarga kurpe sver apmēram trīs kilogramus, un tās zolē ir vismaz sešdesmit naglu. Stāsta, ka viņu svārciņiem esot četrsimt kroku – pa vienai par katru Osmaņu varas gadu –, taču tā drīzāk ir leģenda.',
+  },
+  acromuseum: {
+    name: 'Acropolis Museum', el: 'Μουσείο Ακρόπολης', kind: 'sight', lat: 37.96853, lng: 23.72847, link: W + 'Acropolis_Museum',
+    blurb: 'A glass museum at the foot of the hill, opened in 2009, holding the original sculptures from the Acropolis.',
+    facts: ['Glass floors let you look down into an excavated ancient Athenian neighbourhood under the building.', 'The top floor is turned to match the Parthenon’s exact orientation, and the frieze is shown in the order it once ran around the temple.', 'Five of the six original Caryatids stand here. The sixth’s spot is left empty, waiting for her return from the British Museum.'],
+    lv: 'Akropoles muzejs. Stikla muzejs kalna pakājē, atvērts 2009. gadā, kurā glabājas Akropoles oriģinālās skulptūras. Stikla grīdas ļauj ieskatīties zem ēkas atraktajā senās Atēnu apkaimes vietā. Augšējais stāvs ir pagriezts precīzi tāpat kā Partenons, un frīze ir izkārtota tādā secībā, kādā tā kādreiz apjoza templi. Šeit stāv piecas no sešām oriģinālajām kariatīdām. Sestās vieta ir atstāta tukša – tā gaida viņas atgriešanos no Britu muzeja.',
+  },
+  olympieion: {
+    name: 'Temple of Olympian Zeus', el: 'Ολυμπιείο', kind: 'sight', lat: 37.96944, lng: 23.7331, link: W + 'Temple_of_Olympian_Zeus,_Athens',
+    blurb: 'Huge Corinthian columns, all that’s left of what was once the largest temple in Greece, next to Hadrian’s Arch.',
+    facts: ['It took about 638 years to finish: work began in the 6th century BC and Emperor Hadrian dedicated it in AD 132.', 'It once had 104 columns, each about 17 m tall. 15 still stand.', 'A 16th column lies on the ground exactly where a storm knocked it down in 1852.'],
+    lv: 'Olimpiskā Zeva templis. Milzīgas korintiešu kolonnas – viss, kas palicis pāri no kādreiz lielākā tempļa Grieķijā, blakus Hadriāna arkai. Tā pabeigšana ilga apmēram 638 gadus: darbi sākās sestajā gadsimtā pirms mūsu ēras, un imperators Hadriāns templi iesvētīja 132. gadā mūsu ērā. Kādreiz tam bija 104 kolonnas, katra apmēram 17 metrus augsta. Vēl joprojām stāv piecpadsmit. Sešpadsmitā kolonna guļ zemē tieši tur, kur to 1852. gadā nogāza vētra.',
+  },
+  acropolis: {
+    name: 'Acropolis', el: 'Ακρόπολη', kind: 'sight', lat: 37.9715, lng: 23.72662, maps: 'Acropolis South Entrance, Dionysiou Areopagitou, Athens', link: W + 'Acropolis_of_Athens',
+    blurb: 'The rock above Athens, crowned by the Parthenon and the Erechtheion with its porch of six stone maidens. The Caryatids on the building are copies; the originals are in the museum.',
+    facts: ['The Parthenon (447–432 BC) has almost no straight lines: the floor bulges gently upward and the columns swell and lean slightly inward.', 'In 1687 a Venetian shell hit gunpowder the Ottomans had stored inside the Parthenon, and the explosion blew out its middle.', 'Legend says Athena won the city by giving it an olive tree, beating Poseidon’s saltwater spring. An olive tree still grows beside the Erechtheion.'],
+    lv: 'Akropole. Klints virs Atēnām, ko vainago Partenons un Erehtejons ar sešu akmens meiteņu portiku. Kariatīdas uz ēkas mūsdienās ir kopijas, oriģināli atrodas muzejā. Partenonā, kas celts no 447. līdz 432. gadam pirms mūsu ēras, gandrīz nav taisnu līniju: grīda viegli izliecas uz augšu, bet kolonnas ir nedaudz izliektas un sasvērtas uz iekšu. 1687. gadā venēciešu lādiņš trāpīja šaujampulverim, ko osmaņi bija noglabājuši Partenonā, un sprādziens izrāva tā vidusdaļu. Leģenda vēsta, ka dieviete Atēna ieguva pilsētu, uzdāvinot tai olīvkoku, un pārspēja Poseidona sālsūdens avotu. Blakus Erehtejonam joprojām aug olīvkoks.',
+  },
+  plaka: {
+    name: 'Anafiotika and Plaka', el: 'Πλάκα', kind: 'town', lat: 37.9723819, lng: 23.7281127, link: W + 'Plaka',
+    blurb: 'Athens’ oldest neighbourhood, with Anafiotika’s island-style cottages tucked above it. Anafiotika has lots of steps.',
+    facts: ['Plaka has been lived in since Neolithic times, and some streets, such as Adrianou and Tripodon, follow ancient routes.', 'It’s nicknamed the “Neighbourhood of the Gods” because it sits right below the Acropolis.', 'Anafiotika was built in the 1800s by builders from the tiny island of Anafi, who came to work on King Otto’s palace and built houses like the ones back home.'],
+    lv: 'Anafiotika un Plaka. Vecākā Atēnu apkaime, un virs tās paslēpušies Anafiotikas salu stila namiņi. Anafiotikā ir daudz kāpņu. Plakā cilvēki dzīvojuši jau kopš neolīta, un dažas ielas, piemēram, Adrianu un Tripodon, seko senajiem ceļiem. To dēvē par „dievu apkaimi“, jo tā atrodas tieši zem Akropoles. Anafiotiku deviņpadsmitajā gadsimtā uzcēla celtnieki no mazās Anafi salas, kas bija atbraukuši strādāt pie karaļa Otona pils un uzcēla mājas tādas pašas kā savā dzimtajā salā.',
+  },
+  corinth: {
+    name: 'Corinth Canal', el: 'Διώρυγα της Κορίνθου', kind: 'sight', lat: 37.9271093, lng: 22.9944625, link: W + 'Corinth_Canal',
+    blurb: 'A dead-straight 6.4 km slot cut through solid rock between mainland Greece and the Peloponnese.',
+    facts: ['Emperor Nero broke ground with a pickaxe in AD 67, but the canal wasn’t finished until 1893.', 'The rock walls rise about 90 m, but at water level it’s only about 25 m wide, too narrow for many modern ships.', 'At each end is a bridge that sinks under the water to let boats pass over it.'],
+    lv: 'Korintas kanāls. Pilnīgi taisna, 6,4 kilometrus gara sprauga, izcirsta cietā klintī starp kontinentālo Grieķiju un Peloponēsu. Imperators Nerons 67. gadā mūsu ērā sāka rakšanu ar cērti, bet kanāls tika pabeigts tikai 1893. gadā. Klints sienas paceļas apmēram 90 metru augstumā, bet ūdens līmenī kanāls ir tikai ap 25 metriem plats – pārāk šaurs daudziem mūsdienu kuģiem. Katrā galā ir tilts, kas nogrimst zem ūdens, lai kuģi varētu pār to pārbraukt.',
+  },
+  karytaina: {
+    name: 'Karytaina', el: 'Καρύταινα', kind: 'extra', lat: 37.4844743, lng: 22.0414258, link: W + 'Karytaina',
+    blurb: 'A tiny stone village under a Frankish castle on a steep rock above the Alfeios river, about 20 km off the motorway at Megalopoli. The castle is an open ruin up a steep path.',
+    facts: ['The castle was built in the mid-13th century by the Frankish baron Geoffrey of Briel.', 'In 1826 Kolokotronis, the hero of the War of Independence, repaired the walls and used the castle as his base against Ibrahim Pasha.', 'The five-arched medieval bridge with the castle behind it was on the back of the old 5,000-drachma note, so locals call it “the bridge of the 5,000 drachmas”.'],
+    lv: 'Karitaina. Niecīgs akmens ciemats zem franku cietokšņa uz stāvas klints virs Alfeja upes. Cietoksni trīspadsmitā gadsimta vidū uzcēla franku barons Žofruā de Brijērs. 1826. gadā neatkarības kara varonis Teodors Kolokotronis atjaunoja mūrus un izmantoja cietoksni kā bāzi cīņā pret Ibrahimu pašu. Karitainas viduslaiku tilts ar pieciem lokiem un cietoksni fonā bija attēlots uz vecās piecu tūkstošu drahmu banknotes, tāpēc vietējie to sauc par „piecu tūkstošu drahmu tiltu“.',
+  },
+  kalamata: {
+    name: 'Kalamata', el: 'Καλαμάτα', kind: 'town', lat: 37.0386, lng: 22.1142, link: W + 'Kalamata',
+    blurb: 'Messinia’s seaside capital, famous for its olives, with a Frankish castle, an old town and a big central market. Paralia Verga is on the coast just east of the city.',
+    facts: ['On 23 March 1821 Kalamata became the first city the Greeks freed in their War of Independence.', 'It’s the home of the Kalamatianos, the circle dance you’ll see at every Greek wedding.', 'Nuns at the Kalograion monastery still weave the city’s famous silk scarves.'],
+    lv: 'Kalamata. Mesēnijas piejūras galvaspilsēta, slavena ar savām olīvām, ar franku cietoksni, veco pilsētu un lielu centrālo tirgu. Paralija Verga atrodas pie jūras uzreiz uz austrumiem no pilsētas. 1821. gada 23. martā Kalamata kļuva par pirmo pilsētu, ko grieķi atbrīvoja savā neatkarības karā. Tā ir kalamatianosa dzimtene – apļa deja, ko redzēsiet katrās grieķu kāzās. Kalograjas klostera mūķenes joprojām auž pilsētas slavenos zīda lakatus.',
+  },
+  kalmarket: { name: 'Kalamata Central Market', el: 'Κεντρική Αγορά', kind: 'food', lat: 37.0465, lng: 22.11527, link: W + 'Kalamata', blurb: 'The big municipal market. Local farmers sell here on Wednesday and Saturday mornings.' },
+  sapienza: {
+    name: 'Sapienza island', el: 'Σαπιέντζα', kind: 'beach', lat: 36.76632, lng: 21.70694, maps: 'Methoni Port', link: W + 'Sapientza',
+    blurb: 'An uninhabited green island off Methoni with a lighthouse, beaches and old shipwrecks around it. On the way you cross Navarino Bay, sheltered by the long island of Sphacteria.',
+    facts: ['On 20 October 1827, British, French and Russian fleets destroyed the Ottoman-Egyptian fleet in Navarino Bay. It was the last major sea battle fought entirely with sailing ships, and it helped secure Greek independence.', 'In 425 BC the Athenians trapped Spartan soldiers on Sphacteria and 292 surrendered. That shocked the Greek world, because Spartans were thought never to give up.', 'Sapienza is Italian for “wisdom”. The island has a rare forest of full-size strawberry trees.', 'Out to sea to the southwest is the Calypso Deep, the deepest point in the Mediterranean at more than 5 km down.'],
+    lv: 'Sapiencas sala. Neapdzīvota, zaļa sala pie Metoni ar bāku, pludmalēm un seniem kuģu vrakiem apkārt. Pa ceļam jūs šķērsojat Navarīno līci, ko no atklātas jūras sargā garā Sfaktērijas sala. 1827. gada 20. oktobrī britu, franču un krievu flotes šajā līcī iznīcināja Osmaņu un Ēģiptes floti. Tā bija pēdējā lielā jūras kauja, kurā cīnījās tikai buru kuģi, un tā palīdzēja Grieķijai izcīnīt neatkarību. 425. gadā pirms mūsu ēras atēnieši ielenca spartiešu karavīrus Sfaktērijas salā, un 292 no viņiem padevās. Tas satricināja visu grieķu pasauli, jo uzskatīja, ka spartieši nekad nepadodas. Sapienca itāliski nozīmē „gudrība“. Salā aug rets pilna izmēra zemeņkoku mežs. Jūrā uz dienvidrietumiem atrodas Kalipso dziļvieta – dziļākā vieta Vidusjūrā, vairāk nekā piecus kilometrus dziļa.',
+  },
+  gialova: {
+    name: 'Gialova', el: 'Γιάλοβα', kind: 'town', lat: 36.95111, lng: 21.70162, link: W + 'Gialova_Lagoon',
+    blurb: 'A small village on Navarino Bay next to a protected lagoon that’s a haven for migrating birds.',
+    facts: ['The lagoon is the only place in Europe where the African chameleon lives.', 'For many migrating birds it’s the last stop before they fly back across the Mediterranean to Africa, so October is good timing.', 'Locals call the lagoon Divari, from the Latin “vivarium”, a fish farm.'],
+    lv: 'Jalova. Neliels ciemats pie Navarīno līča blakus aizsargājamai lagūnai, kas ir patvērums gājputniem. Lagūna ir vienīgā vieta Eiropā, kur dzīvo Āfrikas hameleons. Daudziem gājputniem tā ir pēdējā pietura, pirms tie rudenī lido pāri Vidusjūrai atpakaļ uz Āfriku, tāpēc oktobris ir labs laiks. Vietējie lagūnu sauc par Divari – no latīņu vārda „vivārijs“, kas nozīmē zivju audzētavu.',
+  },
+  voidokilia: {
+    name: 'Voidokilia Beach', el: 'Βοϊδοκοιλιά', kind: 'beach', lat: 36.9636234, lng: 21.6627622, link: W + 'Voidokilia_beach',
+    blurb: 'A perfect Ω-shaped bay of dunes and clear water, with Nestor’s Cave and the ruined Old Navarino castle on the cliff above. The castle is officially closed as unsafe.',
+    facts: ['It’s thought to be Homer’s “sandy Pylos”, where King Nestor welcomed Odysseus’ son Telemachus.', 'Myth says the baby god Hermes hid cattle he’d stolen from Apollo in Nestor’s Cave, whose ceiling is about 30 m high.', 'At the north end of the beach is a Bronze Age beehive tomb traditionally linked to Nestor’s son Thrasymedes.'],
+    lv: 'Voidokilijas pludmale. Ideāls omegas formas līcis ar kāpām un dzidru ūdeni, un uz klints virs tā – Nestora ala un sagruvusī Vecā Navarīno pils. Pils oficiāli ir slēgta, jo tā ir nedroša. Uzskata, ka šī ir Homēra „smilšainais Pilos“, kur karalis Nestors uzņēma Odiseja dēlu Telemahu. Mīts vēsta, ka mazais dievs Hermejs Nestora alā paslēpa no Apollona nozagtos lopus. Alas griesti ir apmēram 30 metrus augsti. Pludmales ziemeļu galā atrodas bronzas laikmeta kaps bišu stropa formā, ko tradicionāli saista ar Nestora dēlu Trasimēdu.',
+  },
+  niokastro: {
+    name: 'Niokastro', el: 'Νιόκαστρο', kind: 'sight', lat: 36.911192, lng: 21.6920541, link: 'https://castleroute.culture.gov.gr/en/niokastro/',
+    blurb: 'A large Ottoman fortress above Pylos with a hexagonal citadel, sea bastions and small museums.',
+    facts: ['The Ottomans built it in 1573, right after their defeat at the Battle of Lepanto, to control the bay.', 'Its church started life as a mosque and still has its prayer niche (mihrab).', 'From the late 1800s to the mid-1900s the citadel was a prison, with cells built into its arches.'],
+    lv: 'Niokastro. Liels osmaņu cietoksnis virs Pilos pilsētas ar sešstūra citadeli, jūras bastioniem un nelieliem muzejiem. Osmaņi to uzcēla 1573. gadā, tūlīt pēc sakāves Lepanto kaujā, lai kontrolētu līci. Tā baznīca sākotnēji bija mošeja, un tajā joprojām saglabājusies lūgšanu niša – mihrābs. No deviņpadsmitā gadsimta beigām līdz divdesmitā gadsimta vidum citadele bija cietums ar kamerām, kas iebūvētas tās arkās.',
+  },
+  methoni: {
+    name: 'Methoni Castle', el: 'Κάστρο Μεθώνης', kind: 'sight', lat: 36.8166706, lng: 21.7052652, link: W + 'Methoni_Castle',
+    blurb: 'A huge Venetian sea fortress covering a whole headland. You enter over a 14-arch stone bridge, and at the far end the little Bourtzi tower stands on its own islet.',
+    facts: ['Venice valued Methoni and nearby Koroni so highly that they were called “the eyes of the Republic”.', 'Look for carved winged lions of St Mark, the symbol of Venice, on the walls.', 'The stone bridge at the entrance was built by the French expedition that came in 1828 to help free Greece.'],
+    lv: 'Metoni cietoksnis. Milzīgs venēciešu jūras cietoksnis, kas aizņem visu zemesragu. Ieeja ir pa četrpadsmit arku akmens tiltu, bet tālākajā galā uz savas saliņas stāv mazais Burdzi tornis. Venēcija Metoni un tuvējo Koroni vērtēja tik augstu, ka tās sauca par „Republikas acīm“. Meklējiet uz mūriem izkaltos svētā Marka spārnotos lauvas – Venēcijas simbolu. Akmens tiltu pie ieejas uzcēla franču ekspedīcija, kas 1828. gadā ieradās palīdzēt atbrīvot Grieķiju.',
+  },
+  nestor: {
+    name: 'Palace of Nestor', el: 'Ανάκτορο του Νέστορα', kind: 'extra', lat: 37.02724, lng: 21.69487, link: W + 'Palace_of_Nestor',
+    blurb: 'The best-preserved Mycenaean palace in Greece, built around 1300 BC, under a modern roof with raised walkways. Closed Tuesdays.',
+    facts: ['Archaeologist Carl Blegen found it in 1939, and on the very first day he found clay tablets in Linear B, the earliest written Greek.', 'The tablets survived because the fire that destroyed the palace baked them hard like pottery.', 'You can see the throne room and a clay bathtub that legend links to Telemachus’ bath in the Odyssey.'],
+    lv: 'Nestora pils. Vislabāk saglabājusies Mikēnu laikmeta pils Grieķijā, celta ap 1300. gadu pirms mūsu ēras, tagad zem moderna jumta. Homērs to sauc par gudrā karaļa Nestora pili. Arheologs Karls Blēgens to atrada 1939. gadā, un jau pirmajā dienā viņš atrada māla plāksnītes ar Lineāro B rakstību – senāko grieķu valodas rakstu. Plāksnītes saglabājās tāpēc, ka ugunsgrēks, kas iznīcināja pili, tās apdedzināja kā keramiku. Pilī var redzēt troņa zāli un māla vannu, ko leģenda saista ar Telemaha peldi „Odisejā“.',
+  },
+  foneas: {
+    name: 'Foneas Beach', el: 'Φονέας', kind: 'beach', lat: 36.8674172, lng: 22.2481723, link: 'https://visitpeloponnese.com/en/prdct/foneas-gorge-cross-canyon-caves-and-dive-beach-legendary-pirate',
+    blurb: 'A small white-pebble cove south of Kardamyli, split in two by a huge rock where the Foneas gorge meets the sea. The small car park fills early.',
+    facts: ['Foneas means “killer”. Legend says a pirate once lurked here, though nobody knows if it’s true.', 'The big rock gives shade, and brave swimmers climb it to jump into the deeper water.', 'There are caves along the shore, and the clear water is good for snorkelling.'],
+    lv: 'Foneasa pludmale. Neliels baltu oļu līcītis uz dienvidiem no Kardamili, ko uz pusēm sadala milzīgs klints bluķis tur, kur Foneasa aiza sasniedz jūru. Mazā autostāvvieta piepildās agri. Foneas grieķiski nozīmē „slepkava“. Leģenda vēsta, ka šeit kādreiz slēpies pirāts, lai gan neviens nezina, vai tā ir taisnība. Lielā klints dod ēnu, un drosmīgi peldētāji uzkāpj uz tās, lai lēktu dziļākā ūdenī. Gar krastu ir alas, un dzidrais ūdens ir piemērots snorkelēšanai.',
+  },
+  kardamyli: {
+    name: 'Kardamyli', el: 'Καρδαμύλη', kind: 'town', lat: 36.8870432, lng: 22.2329977, link: W + 'Kardamyli',
+    blurb: 'A stone village between the Taygetos mountains and the sea. Up the lane, Old Kardamyli is the fortified tower complex of the Mourtzinos-Troupakis clan, with the church of Agios Spyridon and a small tower museum.',
+    facts: ['Homer’s Iliad names Kardamyli as one of seven towns Agamemnon offered Achilles to come back to the Trojan War. It still has the same name.', 'Writer Patrick Leigh Fermor lived just outside the village for decades. At 18 he walked from Holland to Constantinople, and in 1944 he helped kidnap a German general on Crete.', 'Local tradition says the tombs of the twins Castor and Pollux are on a trail above the old town.'],
+    lv: 'Kardamili. Akmens ciemats starp Taigeta kalniem un jūru. Augšā pa taciņu atrodas Vecā Kardamili – Murdzinu un Trupaku dzimtas nocietināto torņu komplekss ar Svētā Spiridona baznīcu un nelielu torņa muzeju. Homēra „Iliādā“ Kardamili minēta kā viena no septiņām pilsētām, ko Agamemnons piedāvāja Ahillejam, lai tas atgrieztos Trojas karā. Tai joprojām ir tas pats vārds. Rakstnieks Patriks Lī Fērmors gadu desmitiem dzīvoja tieši aiz ciemata. Astoņpadsmit gadu vecumā viņš kājām aizgāja no Holandes līdz Konstantinopolei, bet 1944. gadā palīdzēja nolaupīt vācu ģenerāli Krētā. Vietējā tradīcija vēsta, ka dvīņu Kastora un Poluksa kapi atrodas uz takas virs vecpilsētas.',
+  },
+  exochori: {
+    name: 'Exochori viewpoint', el: 'Εξωχώρι', kind: 'sight', lat: 36.90137, lng: 22.26829, maps: 'Agios Nikolaos Church, Exochori', link: W + 'Bruce_Chatwin',
+    blurb: 'A quiet hill village about 450 m up on the edge of the Viros gorge, with a small Byzantine chapel of Agios Nikolaos.',
+    facts: ['Travel writer Bruce Chatwin’s ashes were laid to rest near the chapel of Agios Nikolaos after he died in 1989.', 'Chatwin spent months nearby in 1985 writing his bestseller “The Songlines”, close to his mentor Patrick Leigh Fermor.'],
+    lv: 'Eksohori skatu punkts. Kluss kalnu ciemats apmēram 450 metru augstumā Viru aizas malā ar nelielu bizantiešu Svētā Nikolaja kapelu. Rakstnieka un ceļotāja Brūsa Četvina pelni pēc viņa nāves 1989. gadā tika apglabāti pie Svētā Nikolaja kapelas. Četvins 1985. gadā pavadīja vairākus mēnešus netālu no šejienes, rakstot savu slaveno grāmatu par Austrālijas aborigēnu dziesmu ceļiem, līdzās savam mentoram Patrikam Lī Fērmoram.',
+  },
+  stoupa: {
+    name: 'Stoupa', el: 'Στούπα', kind: 'beach', lat: 36.85035, lng: 22.25844, maps: 'Kalogria Beach, Stoupa', link: W + 'Stoupa',
+    blurb: 'A relaxed village on a bay, with small, sandy Kalogria beach right next door.',
+    facts: ['In 1917 the writer Nikos Kazantzakis ran a lignite mine above Stoupa with George Zorbas, the real man behind “Zorba the Greek”.', 'A bust of Kazantzakis stands on the cliff above Kalogria, said to have been his favourite beach.', 'Freshwater springs bubble up under the sea here, so the water has refreshingly cool patches.'],
+    lv: 'Stupa. Mierīgs ciemats pie līča ar nelielo, smilšaino Kalogrijas pludmali blakus. 1917. gadā rakstnieks Nikos Kazandzakis kopā ar Georgiju Zorbu vadīja brūnogļu raktuves virs Stupas. Zorba ir īstais cilvēks aiz romāna „Grieķis Zorba“. Kazandzaka krūšutēls stāv uz klints virs Kalogrijas, kas esot bijusi viņa mīļākā pludmale. Šeit zem jūras burbuļo saldūdens avoti, tāpēc ūdenī ir patīkami vēsas vietas.',
+  },
+  viros: { name: 'Viros Gorge', el: 'Φαράγγι Βυρού', kind: 'extra', lat: 36.90797, lng: 22.26758, link: W + 'Vyros_Gorge', blurb: 'A rocky riverbed path from Kardamyli toward the Agia Sofia church. For keen walkers only.' },
+  langada: {
+    name: 'Langada Pass', el: 'Λαγκάδα', kind: 'sight', lat: 37.0846944, lng: 22.3148675, maps: 'Artemisia, Messinia', link: W + 'Taygetus',
+    blurb: 'The mountain road from Kalamata to Sparta, climbing over Taygetos to about 1,300 m through a gorge with overhanging cliffs and rock tunnels.',
+    facts: ['Taygetos’ highest peak, Profitis Ilias (about 2,400 m), is the tallest mountain in the Peloponnese.', 'Ancient writers say the Spartans threw criminals into a chasm called Keadas, which local tradition places near the village of Trypi on this road.', 'The story that Spartans threw weak babies there doesn’t hold up: the bones found in the pit belong to adults, mostly men aged 18 to 35, and none to infants.'],
+    lv: 'Langadas pāreja. Kalnu ceļš no Kalamatas uz Spartu, kas kāpj pāri Taigetam līdz apmēram 1300 metriem caur aizu ar pārkarenām klintīm un klinšu tuneļiem. Taigeta augstākā virsotne, Profitis Ilias, ap 2400 metriem, ir augstākais kalns Peloponēsā. Antīkie autori raksta, ka spartieši noziedzniekus meta aizā, ko sauca par Keadu. Vietējā tradīcija to novieto pie Tripi ciemata tieši uz šī ceļa. Stāsts, ka spartieši tur meta vārgus zīdaiņus, neapstiprinās: bedrē atrastie kauli pieder pieaugušajiem, galvenokārt vīriešiem no 18 līdz 35 gadiem, un neviens nepieder zīdainim.',
+  },
+  mystras: {
+    name: 'Mystras', el: 'Μυστράς', kind: 'sight', lat: 37.0688335, lng: 22.3758082, link: W + 'Mystras',
+    blurb: 'A ruined Byzantine city spilling down a hillside near Sparta, with frescoed churches, the Palace of the Despots, a working nunnery and a castle on top.',
+    facts: ['The last Byzantine emperor, Constantine XI, was proclaimed emperor here in 1449, four years before Constantinople fell.', 'The nuns of the Pantanassa Monastery are the only people who still live on the site.', 'The philosopher Gemistos Plethon taught here. His lectures in Florence in 1439 helped spark the Renaissance interest in Plato.'],
+    lv: 'Mistra. Sagruvusi bizantiešu pilsēta kalna nogāzē netālu no Spartas, ar freskām rotātām baznīcām, Despotu pili, darbojošos sieviešu klosteri un cietoksni virsotnē. Pēdējais Bizantijas imperators Konstantīns Vienpadsmitais šeit tika pasludināts par imperatoru 1449. gadā, četrus gadus pirms Konstantinopoles krišanas. Pantanasas klostera mūķenes ir vienīgās, kas joprojām dzīvo šajā vietā. Šeit mācīja filozofs Gemists Pletons. Viņa lekcijas Florencē 1439. gadā palīdzēja aizsākt renesanses laika interesi par Platonu.',
+  },
+  olivemuseum: {
+    name: 'Olive and Olive Oil Museum', el: 'Μουσείο Ελιάς', kind: 'sight', lat: 37.0704, lng: 22.42637, link: 'https://www.piop.gr/en/diktuo-mouseion/museum-of-the-olive-and-greek-olive-oil/',
+    blurb: 'A modern museum in Sparta’s old power station on the story of the olive, with presses and a soap-making section. Closed Tuesdays.',
+    facts: ['Its oldest exhibit is a set of fossilised olive leaves from Santorini, 50,000 to 60,000 years old.', 'It shows replicas of Linear B clay tablets from the 14th century BC, the earliest written mentions of olive oil.', 'Working models show olive presses driven by water, steam and diesel.'],
+    lv: 'Olīvu un olīveļļas muzejs. Moderns muzejs Spartas vecajā elektrostacijā, kas stāsta olīvas vēsturi, ar olīvu spiedēm un ziepju darīšanas sadaļu. Tā vecākais eksponāts ir pārakmeņojušās olīvkoka lapas no Santorīni salas, 50 līdz 60 tūkstošus gadu vecas. Tajā redzamas Lineārās B rakstības māla plāksnīšu kopijas no četrpadsmitā gadsimta pirms mūsu ēras – senākās rakstiskās liecības par olīveļļu. Darbojošies modeļi rāda olīvu spiedes, ko darbina ūdens, tvaiks un dīzeļdzinējs.',
+  },
+  diros: {
+    name: 'Diros Caves', el: 'Σπήλαια Διρού', kind: 'sight', lat: 36.6383164, lng: 22.3807, link: 'https://www.greeknewsagenda.gr/diros/',
+    blurb: 'At Vlychada, small boats glide through flooded passages lined with stalactites and stalagmites.',
+    facts: ['Stalactites have been found 71 m under water. They only form in air, so the cave must once have been above the sea.', 'Bones of panthers, hyenas, lions and even hippopotamuses have been found in the Diros caves.', 'Next door, Alepotrypa (“fox hole”) was a Stone Age village and burial site until an earthquake sealed its entrance around 3200 BC.'],
+    lv: 'Diru alas. Vlihadas alā mazas laivas slīd pa applūdušām ejām, kuras rotā stalaktīti un stalagmīti. Stalaktīti atrasti pat 71 metra dziļumā zem ūdens. Tie veidojas tikai gaisā, tātad kādreiz ala atradās virs jūras līmeņa. Diru alās atrasti panteru, hiēnu, lauvu un pat nīlzirgu kauli. Blakus esošā Alepotripa – „lapsas ala“ – bija akmens laikmeta ciemats un apbedījumu vieta, līdz zemestrīce ap 3200. gadu pirms mūsu ēras aizvēra tās ieeju.',
+  },
+  limeni: {
+    name: 'Limeni', el: 'Λιμένι', kind: 'town', lat: 36.6810319, lng: 22.3782696, link: 'https://visitpeloponnese.com/en/prdct/limeni',
+    blurb: 'A tiny turquoise harbour below Areopoli with fish tavernas, overlooked by the restored tower of the Mavromichalis clan. No sandy beach.',
+    facts: ['Limeni was the family seat of the Mavromichalis clan, whose leader Petrobey started the 1821 revolution.', 'Legend says Petrobey’s grandfather married a sea nymph he met on a nearby beach, which locals said explained the family’s good looks.', 'In 1831 two members of the family assassinated Greece’s first head of state, Ioannis Kapodistrias, in Nafplio.'],
+    lv: 'Limeni. Mazs, tirkīzzils ostas ciematiņš zem Areopoles ar zivju tavernām, virs kura slejas atjaunotais Mavromihalu dzimtas tornis. Smilšainas pludmales šeit nav. Limeni bija Mavromihalu dzimtas mītne. Tās vadonis Petrobejs 1821. gadā aizsāka revolūciju. Leģenda vēsta, ka Petrobeja vectēvs apprecēja jūras nimfu, ko satika tuvējā pludmalē, un vietējie ar to skaidroja dzimtas skaistumu. 1831. gadā divi šīs dzimtas locekļi Nafplijā nogalināja Grieķijas pirmo valsts vadītāju Joannisu Kapodistriju.',
+  },
+  areopoli: {
+    name: 'Areopoli', el: 'Αρεόπολη', kind: 'town', lat: 36.6660079, lng: 22.3805151, maps: 'Taxiarchon Square, Areopoli', link: W + 'Areopoli',
+    blurb: 'The main town of the Mani: fortress-like stone tower houses and churches around Taxiarchon Square.',
+    facts: ['On 17 March 1821 Petrobey Mavromichalis raised the flag of revolution in Taxiarchon Square, starting the Greek War of Independence.', 'The name means “City of Ares”, the god of war. It was called Tsimova until 1912.', 'The Mani was known for clan towers and blood feuds. As late as 1870 the army needed artillery to stop a vendetta.'],
+    lv: 'Areopole. Mani galvenā pilsēta: cietokšņiem līdzīgas akmens torņu mājas un baznīcas ap Taksiarhu laukumu. 1821. gada 17. martā Petrobejs Mavromihalis Taksiarhu laukumā pacēla revolūcijas karogu, aizsākot Grieķijas neatkarības karu. Nosaukums nozīmē „Areja pilsēta“ – par godu kara dievam Arejam. Līdz 1912. gadam to sauca par Cimovu. Mani bija slavena ar dzimtu torņiem un asinsatriebību. Vēl 1870. gadā armijai vajadzēja artilēriju, lai apturētu vendetu.',
+  },
+  gytheio: {
+    name: 'Gytheio', el: 'Γύθειο', kind: 'extra', lat: 36.761028, lng: 22.563999, link: W + 'Gytheio',
+    blurb: 'The ancient port of Sparta and the gateway to the Mani: a harbour of fish tavernas, with the pine-covered Marathonisi islet joined to the shore by a causeway.',
+    facts: ['Tradition says Paris and Helen spent their first night together on Marathonisi (ancient Kranai) after fleeing Sparta, the start of the Trojan War.', 'The Tzanetakis tower on the islet houses a small museum of the Mani, about travellers who visited it in the 15th–19th centuries.', 'Myth says Heracles and Apollo founded the town, and its Roman theatre is still used now and then.'],
+    lv: 'Jitio un kuģa vraks. Jitio bija senās Spartas osta, un tagad tie ir vārti uz Mani. Ar krastu dambis savieno Marathonisi saliņu – seno Kranaju. Tradīcija vēsta, ka tieši tur Parīss un Helēna pavadīja savu pirmo nakti pēc bēgšanas no Spartas, ar ko sākās Trojas karš. Dažus kilometrus uz ziemeļiem, Valtaki pludmalē, guļ sarūsējis kravas kuģis „Dimitrios“, uzbūvēts Dānijā 1950. gadā. 1981. gada novembrī vētra to atrāva no Jitio ostas, un decembrī tas uzskrēja krastā, kur īpašnieki to pameta. Klīst leģendas par cigarešu kontrabandu un aizdedzināšanu, bet tās nav pierādītas.',
+  },
+  shipwreck: {
+    name: 'Dimitrios shipwreck', el: 'Ναυάγιο Δημήτριος', kind: 'extra', lat: 36.7890368, lng: 22.5857987, link: W + 'Dimitrios_(shipwreck)',
+    blurb: 'A rusting cargo ship beached on Valtaki beach, about 5 km north of Gytheio. Free, no facilities. Don’t climb on it.',
+    facts: ['It was built in Denmark in 1950 as the Klintholm, about 67 m long.', 'It was left in Gytheio port in 1980–81 after the captain fell ill and money ran out. A storm in November 1981 tore it loose, and it ran aground here that December.', 'Legends say it smuggled cigarettes and was set on fire to destroy the evidence. None of that is documented.'],
+  },
+  messene: {
+    name: 'Ancient Messene', el: 'Αρχαία Μεσσήνη', kind: 'sight', lat: 37.175, lng: 21.92, link: W + 'Messene',
+    blurb: 'A large, well-preserved ancient city in a green valley below Mount Ithome, with a theatre, marketplace, sanctuary of Asklepios and a restored stadium, all ringed by massive walls.',
+    facts: ['The Theban general Epaminondas founded it in 369 BC after beating Sparta at Leuctra, freeing the Messenians from centuries of Spartan rule.', 'Its wall ran about 9 km with 30 towers, and the road north still passes through the ancient Arcadian Gate.', 'No later town was ever built on top of it, which is why so much of the city survives.'],
+    lv: 'Senā Mesēne. Liela, labi saglabājusies antīkā pilsēta zaļā ielejā zem Itomes kalna, ar teātri, tirgus laukumu, Asklēpija svētnīcu un atjaunotu stadionu, un to visu apjoz masīvi mūri. Tēbu karavadonis Epaminonds to dibināja 369. gadā pirms mūsu ēras pēc uzvaras pār Spartu pie Leiktrām, atbrīvojot mesēniešus no gadsimtiem ilgas spartiešu varas. Tās mūris bija apmēram 9 kilometrus garš ar 30 torņiem, un ceļš uz ziemeļiem joprojām ved cauri senajiem Arkādijas vārtiem. Virs tās nekad netika uzcelta vēlāka pilsēta, tāpēc tik liela daļa pilsētas ir saglabājusies.',
+  },
+  mavromati: {
+    name: 'Mavromati', el: 'Μαυρομμάτι', kind: 'town', lat: 37.17933, lng: 21.92334, maps: 'Klepsydra Spring, Mavromati', link: W + 'Ithome',
+    blurb: 'A small village above Ancient Messene, built around an ancient spring that’s still the village fountain.',
+    facts: ['Mavromati means “black eye”, a traditional Greek name for a spring.', 'The ancient writer Pausanias says the nymphs Ithome and Neda bathed baby Zeus in this spring, the Klepsydra, after he was hidden from his father. A good one to tell beside a baby.', 'Water from the spring was carried every day to the temple of Zeus on top of Mount Ithome.'],
+    lv: 'Mavromati. Neliels ciemats virs Senās Mesēnes, uzcelts ap senu avotu, kas joprojām ir ciemata strūklaka. Mavromati nozīmē „melnā acs“ – tā grieķi tradicionāli sauc avotus. Antīkais rakstnieks Pausānijs raksta, ka nimfas Itome un Neda šajā avotā, Klepsidrā, peldināja mazo Zevu, kad viņš bija noslēpts no sava tēva. Ūdeni no šī avota katru dienu nesa uz Zeva templi Itomes kalna virsotnē.',
+  },
+  polylimnio: {
+    name: 'Polylimnio Waterfalls', el: 'Πολυλίμνιο', kind: 'beach', lat: 36.9919598, lng: 21.8513316, link: 'https://www.visitgreece.gr/en/experiences/nature/gorges/polylimnio-messenia',
+    blurb: 'A shaded gorge near Charavgi with 15 to 17 green pools linked by small waterfalls, along a rocky trail that’s steep in places.',
+    facts: ['Polylimnio means “many lakes”.', 'The Kadoula waterfall drops about 25 m.', 'Each pool has its own name and folk story, such as Kadi, Mavrolimna and Italou (“the Italian’s”).'],
+    lv: 'Polilimnio ūdenskritumi. Ēnaina aiza pie Haravgi ciemata ar 15 līdz 17 zaļiem baseiniem, ko savieno nelieli ūdenskritumi, gar akmeņainu taku, kas vietām ir stāva. Polilimnio nozīmē „daudz ezeru“. Kadulas ūdenskritums krīt apmēram 25 metrus. Katram baseinam ir savs vārds un tautas stāsts, piemēram, Kadi, Mavrolimna un Italu – „itālieša“ baseins.',
+  },
+  kalamatacastle: { name: 'Kalamata Castle', el: 'Κάστρο Καλαμάτας', kind: 'sight', lat: 37.04596, lng: 22.11695, link: W + 'Kalamata_Castle', blurb: 'Ruins of a 13th-century Frankish castle on a hill above the old town. Prince William II of Villehardouin, who built Mystras castle, was born and died here.' },
+  railwaypark: { name: 'Kalamata Railway Park', el: 'Σιδηροδρομικό Πάρκο', kind: 'sight', lat: 37.03019, lng: 22.1101, link: 'https://www.erih.net/i-want-to-go-there/kalamata-municipal-railway-park', blurb: 'An open-air railway museum in the old station, with steam locomotives, carriages and a café. Free.' },
+  messeniamuseum: { name: 'Archaeological Museum of Messenia', el: 'Αρχαιολογικό Μουσείο', kind: 'sight', lat: 37.04379, lng: 22.11345, link: W + 'Archaeological_Museum_of_Messenia', blurb: 'A compact museum in Kalamata’s old market hall, with finds from Mycenaean to Byzantine times.' },
+  nafplio: {
+    name: 'Nafplio', el: 'Ναύπλιο', kind: 'extra', lat: 37.5673173, lng: 22.8015531, link: W + 'Nafplio',
+    blurb: 'A Venetian-flavoured harbour town and the first capital of modern Greece, under the Palamidi fortress, with the little Bourtzi castle on an islet in the harbour.',
+    facts: ['It was Greece’s capital until 1834, when the capital moved to Athens.', 'The “999 steps” up to Palamidi are a legend: there are about 857 to the entrance. Palamidi costs €20, or €10 reduced.', 'Kapodistrias, Greece’s first head of state, was shot at the door of Agios Spyridon church in 1831 by two of the Mavromichalis family from Limeni. A bullet mark is still shown under glass.'],
+    lv: 'Nafplija. Venēciešu noskaņas ostas pilsēta, kas bija mūsdienu Grieķijas pirmā galvaspilsēta – līdz 1834. gadam, kad galvaspilsēta pārcēlās uz Atēnām. Virs tās slejas Palamidi cietoksnis, ko venēcieši uzcēla no 1711. līdz 1714. gadam. Stāsta, ka līdz tam ved 999 pakāpieni, bet patiesībā līdz ieejai to ir ap 850. Ostā uz saliņas stāv Burdzi pils. No 1865. gada tajā dzīvoja pilsētas bende, vēlāk tā bija viesnīca. 1831. gadā pie Svētā Spiridona baznīcas durvīm tika nogalināts Grieķijas pirmais valsts vadītājs Joannis Kapodistrija. Lodes pēdu pie ieejas joprojām rāda zem stikla.',
+  },
+  'parking-nafplio': { name: 'Free parking, Nafplio', kind: 'stay', lat: 37.56756, lng: 22.79912 },
+  mycenae: { name: 'Mycenae', el: 'Μυκήνες', kind: 'extra', lat: 37.72919, lng: 22.75443, link: W + 'Mycenae', blurb: 'Agamemnon’s legendary citadel, with the Lion Gate, huge “Cyclopean” walls and the beehive tomb called the Treasury of Atreus. Uneven, sloping ground.' },
+  epidaurus: { name: 'Theatre of Epidaurus', el: 'Επίδαυρος', kind: 'extra', lat: 37.596, lng: 23.07942, link: W + 'Ancient_Theatre_of_Epidaurus', blurb: 'A 4th-century BC theatre for about 13,000 people, famous for its acoustics. Guides drop a coin on the stage to show it can be heard from the top rows.' },
+};
+
+// Your Google My Maps pins → places above. Pins not listed here still show on the map with your note.
+export const PIN_ALIAS = {
+  'Attēnas naktsmājas': 'stay-athens', 'Īstā naktsmāja': 'stay-base', 'Potenciālais stāvlaukums': 'parking-athens',
+  'Acropolis Ticket Office': 'acropolis', 'Panathenaic Stadium': 'stadium', 'Athens National Garden': 'zappeion',
+  'Syntagma Square': 'syntagma', 'Anafiotika': 'plaka', 'Old Isthmus Bridge': 'corinth', 'Nafplion': 'nafplio',
+  'Karytaina': 'karytaina', 'Parking nafpilo, bezmaksas': 'parking-nafplio',
+  'Kardamyli': 'kardamyli', 'Stoupa beach': 'stoupa', 'Messene': 'messene', 'Polylimnio waterfalls': 'polylimnio',
+  'Voidokilia Beach': 'voidokilia', 'New Navarino Castle': 'niokastro', 'Methoni Castle': 'methoni', 'Limeni': 'limeni',
+  'Caves of Diros': 'diros', 'Dimitrios Shipwreck': 'shipwreck', 'Gytheio': 'gytheio', 'Langada-Taygetos Pass': 'langada',
+  'Mystras': 'mystras', 'Areopoli': 'areopoli', 'Foneas beach': 'foneas',
+};
