@@ -3,7 +3,7 @@ import { PLANS } from '../../data/plans.js';
 import { DISHES } from '../../data/food.js';
 import { DUR } from '../../data/durations.js';
 import { sync, backendUrl } from '../sync.js';
-import { esc, store, shortDate } from '../util.js';
+import { esc, store, shortDate, navApp } from '../util.js';
 import { header, planFor, assignPlan, MOVABLE_PLANS } from '../ui.js';
 import { people } from './expenses.js';
 import { L, F, lang, setLang } from '../i18n.js';
@@ -19,6 +19,11 @@ export function settings() {
     <section class="section"><h2>${L('Language')}</h2>
       <div class="seg" role="radiogroup" aria-label="${L('Language')}">${[['en', 'English'], ['lv', 'Latviešu']].map(([k, l]) => `<button type="button" role="radio" data-lang="${k}" aria-checked="${k === lang}">${l}</button>`).join('')}</div>
       <p class="small muted">${L('Only changes this phone.')}</p>
+    </section>
+
+    <section class="section"><h2>${L('Directions')}</h2>
+      <div class="seg" role="radiogroup" aria-label="${L('Directions open in')}">${[['google', 'Google Maps'], ['waze', 'Waze']].map(([k, l]) => `<button type="button" role="radio" data-nav="${k}" aria-checked="${k === navApp()}">${l}</button>`).join('')}</div>
+      <p class="small muted">${L('Directions buttons open this app. Whole-day routes always open in Google Maps, because Waze can’t plan several stops. Only changes this phone.')}</p>
     </section>
 
     <section class="section"><h2>${L('You')}</h2>
@@ -55,6 +60,10 @@ export function settings() {
     after(root) {
       const $ = s => root.querySelector(s);
       $('#me-save').addEventListener('click', () => { store.set('me', $('#me').value.trim()); $('#me-save').textContent = L('Saved'); });
+      root.querySelectorAll('[data-nav]').forEach(b => b.addEventListener('click', () => {
+        store.set('nav', b.dataset.nav);
+        root.querySelectorAll('[data-nav]').forEach(x => x.setAttribute('aria-checked', x === b));
+      }));
       root.querySelectorAll('[data-lang]').forEach(b => b.addEventListener('click', () => { if (b.dataset.lang !== lang) setLang(b.dataset.lang); }));
       root.querySelectorAll('[data-date]').forEach(s => s.addEventListener('change', () => assignPlan(s.dataset.date, s.value)));
       $('#ord-reset').addEventListener('click', () => sync.set('schedule', {}));

@@ -229,6 +229,8 @@ export const TO_LV = {
  "Dinner in Limeni": "Vakariņas Limeni",
  "Diples": "Diples",
  "Directions": "Maršruts",
+ "Directions buttons open this app. Whole-day routes always open in Google Maps, because Waze can’t plan several stops. Only changes this phone.": "Pogas „Maršruts“ atver šo lietotni. Visas dienas maršruts vienmēr atveras Google Maps, jo Waze nevar plānot vairākas pieturas. Mainās tikai šajā telefonā.",
+ "Directions open in": "Maršruts atveras",
  "Diros Caves": "Diru alas",
  "Diros Caves, Limeni, Areopoli": "Diru alas, Limeni, Areopoli",
  "Diros Caves: 2 × €12 + 4 × €10": "Diru alas: 2 × €12 + 4 × €10",

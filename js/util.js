@@ -27,7 +27,11 @@ export const euro = n => '€' + (Math.round(n * 100) / 100).toLocaleString('en'
 
 const enc = encodeURIComponent;
 const q = p => typeof p === 'object' && p ? `${p.lat},${p.lng}` : p;
-export const mapsDir = p => 'https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=' + enc(q(p));
+// Directions open in the app chosen in Settings (per phone). Multi-stop routes always use Google Maps.
+export const navApp = () => store.get('nav', 'google');
+export const mapsDir = p => navApp() === 'waze'
+  ? (typeof p === 'object' && p ? `https://waze.com/ul?ll=${p.lat},${p.lng}&navigate=yes` : 'https://waze.com/ul?navigate=yes&q=' + enc(p))
+  : 'https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=' + enc(q(p));
 export const mapsSearch = s => 'https://www.google.com/maps/search/?api=1&query=' + enc(s);
 export const mapsRoute = list => 'https://www.google.com/maps/dir/' + list.map(p => enc(q(p))).join('/');
 export const EXT = 'target="_blank" rel="noopener"';

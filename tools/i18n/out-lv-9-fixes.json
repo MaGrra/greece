@@ -5,5 +5,7 @@
  "Everything today": "Šodien viss bez maksas",
  "Whenever": "Kad vēlaties",
  "rough: pick the castles plan": "ļoti viļņaina: izvēlieties cietokšņu plānu",
- "Enter an amount, for example 42.50.": "Ievadiet summu, piemēram, 42,50."
+ "Enter an amount, for example 42.50.": "Ievadiet summu, piemēram, 42,50.",
+ "Directions open in": "Maršruts atveras",
+ "Directions buttons open this app. Whole-day routes always open in Google Maps, because Waze can’t plan several stops. Only changes this phone.": "Pogas „Maršruts“ atver šo lietotni. Visas dienas maršruts vienmēr atveras Google Maps, jo Waze nevar plānot vairākas pieturas. Mainās tikai šajā telefonā."
 }
