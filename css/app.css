@@ -59,6 +59,8 @@ body.has-player .wrap { padding-bottom: calc(var(--tabbar-h) + 96px + env(safe-a
 .el { font-family: var(--display); font-weight: 400; color: var(--muted); font-size: .95em; margin-left: 6px; }
 
 /* page header */
+.seg.lang { justify-self: end; margin-bottom: -4px; }
+.seg.lang button { padding: 4px 11px; font-size: 13px; }
 .page-head { display: grid; gap: 8px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
 .back { display: inline-flex; align-items: center; gap: 4px; justify-self: start; border: 0; background: none; color: var(--sea); font-weight: 600; font-size: 15px; padding: 4px 0; cursor: pointer; }
 .back svg { width: 18px; height: 18px; }

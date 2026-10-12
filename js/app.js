@@ -1,4 +1,12 @@
 import { $, $$, ICON } from './util.js';
+import { L, lang, localize } from './i18n.js';
+import { PLANS } from '../data/plans.js';
+import { PLACES } from '../data/places.js';
+import * as INFO from '../data/info.js';
+import * as FOOD from '../data/food.js';
+import { RESTAURANTS, AREAS } from '../data/restaurants.js';
+import * as CHEATS from '../data/cheats.js';
+import { QUIZ } from '../data/quiz.js';
 import { sync, startSync } from './sync.js';
 import { player, render as renderPlayer } from './player.js';
 import { dayAudio } from './ui.js';
@@ -10,12 +18,19 @@ import { expenses } from './views/expenses.js';
 import { settings } from './views/settings.js';
 import { mapView } from './views/map.js';
 
+// Swap in the chosen language before anything renders.
+localize(PLANS); localize(PLACES); localize(INFO.TRIP); localize(INFO.HEADSUP); localize(INFO.TODO); localize(INFO.TICKETS);
+localize(INFO.WEATHER_TIPS); localize(INFO.ADDR); localize(FOOD.DISHES); localize(FOOD.FOOD_CATS); localize(FOOD.FLAGS);
+localize(RESTAURANTS, ['name']); localize(AREAS); localize(CHEATS.ALPHABET); localize(CHEATS.SIGNS);
+localize(EPISODES); localize(QUIZ);
+document.documentElement.lang = lang;
+
 const TABS = [
-  ['today', 'Today', ICON.sun],
-  ['days', 'Days', ICON.cal],
-  ['map', 'Map', ICON.map],
-  ['food', 'Food', ICON.food],
-  ['more', 'More', ICON.more],
+  ['today', L('Today'), ICON.sun],
+  ['days', L('Days'), ICON.cal],
+  ['map', L('Map'), ICON.map],
+  ['food', L('Food'), ICON.food],
+  ['more', L('More'), ICON.more],
 ];
 const TAB_OF = { today: 'today', days: 'days', day: 'days', map: 'map', food: 'food', dish: 'food' };
 
@@ -78,7 +93,7 @@ document.addEventListener('click', e => {
   }
   const copy = e.target.closest('[data-copy]');
   if (copy) {
-    const done = () => { copy.textContent = 'Copied'; setTimeout(() => { copy.textContent = 'Copy'; }, 1500); };
+    const done = () => { copy.textContent = L('Copied'); setTimeout(() => { copy.textContent = L('Copy'); }, 1500); };
     navigator.clipboard?.writeText(copy.dataset.copy).then(done, () => {});
   }
 });

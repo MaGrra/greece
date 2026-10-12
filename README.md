@@ -37,7 +37,23 @@ Without a backend URL, everything still works but stays on each phone.
 
 Map pins come live from the shared Google My Maps through the backend. `data/mymap.js` is the offline fallback; refresh it with `python3 tools/kml_to_pins.py`.
 
-## 4. Audio
+## 4. Languages
+
+Each phone picks English or Latvian (Today screen or Settings). Data files are written in one language; translations live in
+`data/i18n-lv.js` (English → Latvian, keyed by the exact English text) and `data/i18n-en.js` (Latvian → English for the quiz).
+Interface text in code is wrapped in `L('…')` or `F('… {n} …', { n })`.
+
+After changing any text:
+
+```sh
+node tools/i18n_extract.mjs   # writes tools/i18n/todo-lv.json and todo-en.json with what's missing
+# translate those (rules in tools/i18n/GLOSSARY.md) into tools/i18n/out-lv-*.json / out-en.json, then:
+python3 tools/i18n_merge.py
+```
+
+Anything without a translation simply shows in its original language.
+
+## 5. Audio
 
 Narration is generated with Microsoft's neural voices (Latvian: Everita, Greek: Athina):
 

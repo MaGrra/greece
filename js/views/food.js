@@ -2,6 +2,7 @@ import { DISHES, FOOD_CATS, FLAGS, MENU_WORDS } from '../../data/food.js';
 import { RESTAURANTS, AREAS } from '../../data/restaurants.js';
 import { esc, ICON } from '../util.js';
 import { header, sayBtn, restaurantCard } from '../ui.js';
+import { L, F, lang } from '../i18n.js';
 
 let query = '';
 let flag = '';
@@ -16,7 +17,7 @@ const flagChips = d => d.flags.length ? `<span class="flags">${d.flags.map(f => 
 function dishList() {
   const q = norm(query);
   const hits = DISHES.filter(d => (!q || hay(d).includes(q)) && (!flag || (flag === 'nopork' ? !d.flags.includes('pork') : d.flags.includes(flag))));
-  if (!hits.length) return `<p class="muted">Nothing matches “${esc(query)}”. Try the Greek spelling from the menu, or check the Menu words tab.</p>`;
+  if (!hits.length) return `<p class="muted">${F('Nothing matches “{q}”. Try the Greek spelling from the menu, or check the Menu words tab.', { q: esc(query) })}</p>`;
   return FOOD_CATS.map(([cat, label]) => {
     const list = hits.filter(d => d.cat === cat);
     if (!list.length) return '';
@@ -30,12 +31,12 @@ function dishList() {
 function wordList() {
   const q = norm(query);
   const hits = MENU_WORDS.filter(w => !q || norm([w.el, w.tr, w.en, w.lv].join(' ')).includes(q));
-  return `<p class="small muted">Words you’ll see on Greek menus. An asterisk next to a dish means frozen; fish and house wine are priced by the kilo.</p>
-  <ul class="words">${hits.map(w => `<li><span><span class="g" lang="el">${esc(w.el)}</span><br><span class="t">${esc(w.tr)}</span></span><span><span>${esc(w.en)}</span><br><span class="t" lang="lv">${esc(w.lv)}</span></span></li>`).join('')}</ul>`;
+  return `<p class="small muted">${L('Words you’ll see on Greek menus. An asterisk next to a dish means frozen; fish and house wine are priced by the kilo.')}</p>
+  <ul class="words">${hits.map(w => `<li><span><span class="g" lang="el">${esc(w.el)}</span><br><span class="t">${esc(w.tr)}</span></span><span>${lang === 'lv' ? `<span lang="lv">${esc(w.lv)}</span>` : `<span>${esc(w.en)}</span><br><span class="t" lang="lv">${esc(w.lv)}</span>`}</span></li>`).join('')}</ul>`;
 }
 
 function eatList() {
-  return `<p class="small muted">Picked for good reviews, fair prices and families. Seaside places can close for winter in October: ones marked “Check it’s open” had no proof either way. Ratings were checked on Oct 12; tap Reviews for live ones.</p>
+  return `<p class="small muted">${L('Picked for good reviews, fair prices and families. Seaside places can close for winter in October: ones marked “Check it’s open” had no proof either way. Ratings were checked on Oct 12; tap Reviews for live ones.')}</p>
   ${Object.entries(AREAS).map(([area, label]) => {
     const list = RESTAURANTS.filter(r => r.area === area);
     return list.length ? `<section class="section"><h2>${label}</h2><div class="stack">${list.map(restaurantCard).join('')}</div></section>` : '';
@@ -46,12 +47,12 @@ export function food(arg) {
   const tab = ['words', 'eat'].includes(arg) ? arg : 'dishes';
   const searchable = tab !== 'eat';
   return {
-    title: 'Food',
-    html: `${header('Food', { sub: 'What’s on the menu, and where to eat it.' })}
+    title: L('Food'),
+    html: `${header(L('Food'), { sub: L('What’s on the menu, and where to eat it.') })}
     <div class="section" style="margin-top:16px">
-      <div class="seg" role="tablist">${[['dishes', 'Dishes'], ['words', 'Menu words'], ['eat', 'Where to eat']].map(([k, l]) => `<button type="button" role="tab" aria-selected="${k === tab}" data-go="food${k === 'dishes' ? '' : '/' + k}">${l}</button>`).join('')}</div>
-      ${searchable ? `<div class="search">${ICON.search}<input type="search" id="food-q" placeholder="${tab === 'dishes' ? 'Search: moussaka, μουσακάς, cheese…' : 'Search menu words'}" value="${esc(query)}" autocomplete="off"></div>` : ''}
-      ${tab === 'dishes' ? `<div class="chips" role="group" aria-label="Filter">${[['', 'All'], ['veg', 'Vegetarian'], ['baby', 'Good for the baby'], ['sea', 'Seafood'], ['nopork', 'No pork']].map(([k, l]) => `<button type="button" class="chip" data-flag="${k}" aria-pressed="${k === flag}">${l}</button>`).join('')}</div>` : ''}
+      <div class="seg" role="tablist">${[['dishes', L('Dishes')], ['words', L('Menu words')], ['eat', L('Where to eat')]].map(([k, l]) => `<button type="button" role="tab" aria-selected="${k === tab}" data-go="food${k === 'dishes' ? '' : '/' + k}">${l}</button>`).join('')}</div>
+      ${searchable ? `<div class="search">${ICON.search}<input type="search" id="food-q" placeholder="${tab === 'dishes' ? L('Search: moussaka, μουσακάς, cheese…') : L('Search menu words')}" value="${esc(query)}" autocomplete="off"></div>` : ''}
+      ${tab === 'dishes' ? `<div class="chips" role="group" aria-label="${L('Filter')}">${[['', L('All')], ['veg', L('Vegetarian')], ['baby', L('Good for the baby')], ['sea', L('Seafood')], ['nopork', L('No pork')]].map(([k, l]) => `<button type="button" class="chip" data-flag="${k}" aria-pressed="${k === flag}">${l}</button>`).join('')}</div>` : ''}
     </div>
     <div id="food-list">${tab === 'dishes' ? dishList() : tab === 'words' ? wordList() : eatList()}</div>`,
     after(root) {
@@ -69,12 +70,12 @@ export function food(arg) {
 
 export function dish(id) {
   const d = DISHES.find(x => x.id === id);
-  if (!d) return { html: header('Not found', { back: 'food' }) };
+  if (!d) return { html: header(L('Not found'), { back: 'food' }) };
   const cat = FOOD_CATS.find(c => c[0] === d.cat)[1];
   return {
     title: d.name,
     html: `<header class="page-head">
-      <button type="button" class="back" data-go="food">${ICON.back}<span>Food</span></button>
+      <button type="button" class="back" data-go="food">${ICON.back}<span>${L('Food')}</span></button>
       <p class="eyebrow">${cat}</p>
     </header>
     <div class="section" style="margin-top:16px">
@@ -83,12 +84,12 @@ export function dish(id) {
       <h1 style="font-size:1.6rem">${esc(d.name)}</h1>
       ${flagChips(d)}
       <p>${esc(d.en)}</p>
-      <div class="card"><p class="eyebrow">What’s in it</p><p>${esc(d.inside)}</p></div>
-      <div class="lvbox" lang="lv"><p class="eyebrow">Latviski</p><p>${esc(d.lv)}</p></div>
+      <div class="card"><p class="eyebrow">${L('What’s in it')}</p><p>${esc(d.inside)}</p></div>
+      ${lang === 'en' ? `<div class="lvbox" lang="lv"><p class="eyebrow">Latviski</p><p>${esc(d.lv)}</p></div>` : ''}
       <p class="small muted" id="credit"></p>
     </div>`,
     after(root) {
-      const show = c => { const x = c && c[d.id]; const el = root.querySelector('#credit'); if (x && el) el.innerHTML = `Photo: ${esc(x.author)}, <a href="${esc(x.source)}" target="_blank" rel="noopener">${esc(x.license)}</a>`; };
+      const show = c => { const x = c && c[d.id]; const el = root.querySelector('#credit'); if (x && el) el.innerHTML = `${L('Photo')}: ${esc(x.author)}, <a href="${esc(x.source)}" target="_blank" rel="noopener">${esc(x.license)}</a>`; };
       if (credits) show(credits);
       else fetch('img/food/credits.json').then(r => r.json()).then(c => { credits = c; show(c); }).catch(() => {});
     },

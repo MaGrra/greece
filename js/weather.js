@@ -55,3 +55,5 @@ export async function seaState(p, date) {
   const label = h < 0.5 ? 'calm' : h < 1 ? 'a little choppy' : h < 1.5 ? 'choppy: bumpy on a small boat' : 'rough: pick the castles plan';
   return { h: Math.round(h * 10) / 10, label, rough: h >= 1.5 };
 }
+
+// Listed so the translation tool picks these words up: L('Sunny') L('Partly cloudy') L('Cloudy') L('Fog') L('Drizzle') L('Rain') L('Snow') L('Showers') L('Thunderstorms') L('calm') L('a little choppy') L('choppy: bumpy on a small boat') L('rough: pick the castles plan')

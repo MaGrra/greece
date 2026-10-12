@@ -1,3 +1,5 @@
+import { DOW, fmtLongDate } from './i18n.js';
+
 export const $ = (s, r = document) => r.querySelector(s);
 export const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
@@ -15,13 +17,9 @@ export const parseISO = s => { const [y, m, d] = s.split('-').map(Number); retur
 export const addDays = (s, n) => { const d = parseISO(s); d.setDate(d.getDate() + n); return isoDate(d); };
 export const dateRange = (a, b) => { const out = []; for (let s = a; s <= b; s = addDays(s, 1)) out.push(s); return out; };
 
-const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const DOW_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 export const dow = s => DOW[parseISO(s).getDay()];
-export const dowLong = s => DOW_LONG[parseISO(s).getDay()];
 export const dayNum = s => parseISO(s).getDate();
-export const longDate = s => `${DOW_LONG[parseISO(s).getDay()]}, ${MON[parseISO(s).getMonth()]} ${parseISO(s).getDate()}`;
+export const longDate = s => { const d = parseISO(s); return fmtLongDate(d.getDay(), d.getDate(), d.getMonth()); };
 export const shortDate = s => `${DOW[parseISO(s).getDay()]} ${parseISO(s).getDate()}`;
 export const minutes = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
 export const fmtDur = sec => Math.floor(sec / 60) + ':' + pad(Math.round(sec % 60));

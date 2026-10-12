@@ -1,15 +1,15 @@
 // Offline support. Code and data: network first (fresh when online), cache when offline.
 // Audio, photos, fonts and map tiles: cache first.
-const VERSION = '2026-10-12b'; // bump to clear old offline copies of the app shell
+const VERSION = '2026-10-13'; // bump to clear old offline copies of the app shell
 const SHELL = 'shell-' + VERSION;
 const MEDIA = 'media-v1';
 const TILES = 'tiles-v1';
 const SHELL_FILES = [
   './', 'index.html', 'css/app.css', 'manifest.webmanifest', 'img/icon-192.png',
-  'js/app.js', 'js/util.js', 'js/sync.js', 'js/player.js', 'js/weather.js', 'js/ui.js',
+  'js/app.js', 'js/i18n.js', 'js/util.js', 'js/sync.js', 'js/player.js', 'js/weather.js', 'js/ui.js',
   'js/views/days.js', 'js/views/food.js', 'js/views/more.js', 'js/views/expenses.js', 'js/views/settings.js', 'js/views/map.js',
   'data/config.js', 'data/plans.js', 'data/places.js', 'data/info.js', 'data/food.js', 'data/restaurants.js',
-  'data/stories.js', 'data/quiz.js', 'data/cheats.js', 'data/mymap.js', 'data/durations.js',
+  'data/stories.js', 'data/quiz.js', 'data/cheats.js', 'data/mymap.js', 'data/durations.js', 'data/i18n-lv.js', 'data/i18n-en.js',
 ];
 
 self.addEventListener('install', e => {

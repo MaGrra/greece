@@ -54,3 +54,6 @@ export const RESTAURANTS = [
   { area: 'nafplio', name: 'Il Porto', lat: 37.567327, lng: 22.8008019, price: '€€', rating: 'Google 4.5 (3,050)', why: 'Wood-fired pizza and pasta on the harbour front. Easy for mixed ages.', view: 'Harbour front', baby: 'Pizza and pasta', october: 'Likely open, 12:00–24:00', phone: '+30 2752 096097', mapsQuery: 'Il Porto Bouboulinas 43 Nafplio' },
   { area: 'nafplio', name: 'Menta', lat: 37.5648136, lng: 22.8065452, price: '€€', rating: 'Google 4.6 (1,095)', why: 'Greek grills in the new town, easier to reach by car.', view: null, baby: 'High chairs, step-free patio', october: 'May be closed: check', phone: '+30 2752 099088', mapsQuery: 'Menta Resto Bar 25is Martiou 9 Nafplio' },
 ];
+
+// Flag places with no proof they're open in October (computed before translation).
+RESTAURANTS.forEach(r => { r.check = /check|closed/i.test(r.october || ''); });

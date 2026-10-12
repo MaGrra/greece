@@ -1,5 +1,6 @@
 // One audio element for the whole app, a queue for "play all", and a small bar above the tab bar.
 import { $, $$, ICON, esc, fmtDur } from './util.js';
+import { L, F } from './i18n.js';
 
 const au = new Audio();
 au.preload = 'none';
@@ -66,9 +67,9 @@ export function render() {
   document.body.classList.toggle('has-player', !!cur);
   if (!cur) return;
   el.innerHTML = `
-    <button type="button" class="pbtn" data-ptoggle aria-label="${on ? 'Pause' : 'Play'}">${on ? ICON.pause : ICON.play}</button>
-    <div class="pmeta"><b>${esc(cur.title)}</b><span class="t">${queue.length ? `${queue.length} more after this` : ''}</span><span class="prog"><i></i></span></div>
-    <button type="button" class="pbtn ghost" data-pstop aria-label="Stop">${ICON.close}</button>`;
+    <button type="button" class="pbtn" data-ptoggle aria-label="${on ? L('Pause') : L('Play')}">${on ? ICON.pause : ICON.play}</button>
+    <div class="pmeta"><b>${esc(cur.title)}</b><span class="t">${queue.length ? F('{n} more after this', { n: queue.length }) : ''}</span><span class="prog"><i></i></span></div>
+    <button type="button" class="pbtn ghost" data-pstop aria-label="${L('Stop')}">${ICON.close}</button>`;
   el.querySelector('[data-ptoggle]').onclick = toggle;
   el.querySelector('[data-pstop]').onclick = player.stop;
 }
