@@ -1,6 +1,6 @@
 export const CONFIG = {
   // Apps Script web app URL (ends in /exec). Empty = the app works on this phone only, without sharing.
-  backendUrl: '',
+  backendUrl: 'https://script.google.com/macros/s/AKfycbyLFyLhkcKA_kQFPKlTQ2sqBsuaj0a2JYDO4aGbzIdJN34SjQWdZUMTY0Y8L6k_ojv7Lg/exec',
   tripStart: '2026-10-13',
   tripEnd: '2026-10-20',
   // Days whose plan can be swapped in Settings. Athens days and the drive back are fixed.
