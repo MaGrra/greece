@@ -83,11 +83,11 @@ export function mapView() {
     html: `<div class="map-page">
       <div id="map" role="region" aria-label="Map"></div>
       <div class="map-ui"><div class="chips" id="map-filter">${FILTERS.filter(([k]) => k !== 'today' || TRIP_DATES.includes(todayISO())).map(([k, l]) => `<button type="button" class="chip" data-f="${k}" aria-pressed="${k === filter}">${DOT[k] ? `<span class="dot pin-${DOT[k]}"></span>` : ''}${l}</button>`).join('')}</div></div>
-      <button type="button" class="locate" id="locate" aria-label="Show where I am">${ICON.locate}</button>
+      <button type="button" class="locate" id="locate" aria-pressed="false">${ICON.locate}<span>My location</span></button>
       <div class="sheet" id="sheet" hidden></div>
     </div>`,
     after(root) {
-      let map = null, layer = null, watch = null, meMarker = null, alive = true;
+      let map = null, layer = null, watch = null, meMarker = null, accCircle = null, alive = true;
       let pins = buildPins(store.get('pins', null) || MYMAP_SNAPSHOT);
       const sheet = root.querySelector('#sheet');
 
@@ -120,6 +120,7 @@ export function mapView() {
         layer = L.layerGroup().addTo(map);
         map.on('click', () => { sheet.hidden = true; });
         draw(true);
+        autoLocate();
         fetchPins().then(live => { if (live && alive) { pins = buildPins(live); draw(false); } });
       }).catch(() => {
         root.querySelector('#map').innerHTML = '<p class="note" style="margin:80px 16px">The map needs a connection the first time. Everything else works offline.</p>';
@@ -132,21 +133,42 @@ export function mapView() {
         draw(true);
       }));
 
-      root.querySelector('#locate').addEventListener('click', () => {
+      const locBtn = root.querySelector('#locate');
+      const setBtn = (label, on) => { locBtn.querySelector('span').textContent = label; locBtn.setAttribute('aria-pressed', on); };
+      const message = text => {
+        sheet.innerHTML = `<button type="button" class="sheet-close" aria-label="Close">${ICON.close}</button><p class="small" style="padding-right:36px">${text}</p>`;
+        sheet.hidden = false;
+        sheet.querySelector('.sheet-close').onclick = () => { sheet.hidden = true; };
+      };
+      const inGreece = ([lat, lng]) => lat > 34.5 && lat < 41.9 && lng > 19.3 && lng < 29.8;
+
+      // center: 'always' when tapped, 'greece' when started automatically (don't jump to Riga before the trip)
+      const locate = center => {
         if (!navigator.geolocation || !map) return;
-        if (watch != null) { if (meMarker) map.setView(meMarker.getLatLng(), Math.max(map.getZoom(), 13)); return; }
+        if (watch != null) { if (meMarker) map.setView(meMarker.getLatLng(), Math.max(map.getZoom(), 14)); return; }
+        setBtn('Finding you…', false);
         let first = true;
         watch = navigator.geolocation.watchPosition(pos => {
           const ll = [pos.coords.latitude, pos.coords.longitude];
-          if (!meMarker) meMarker = window.L.marker(ll, { icon: window.L.divIcon({ className: '', html: '<div class="me-dot"></div>', iconSize: [16, 16], iconAnchor: [8, 8] }), interactive: false }).addTo(map);
-          else meMarker.setLatLng(ll);
-          if (first) { map.setView(ll, 13); first = false; }
-        }, () => {
-          sheet.innerHTML = `<button type="button" class="sheet-close" aria-label="Close">${ICON.close}</button><p class="small">Location is off for this site. Allow it in the browser settings to see where you are.</p>`;
-          sheet.hidden = false; sheet.querySelector('.sheet-close').onclick = () => { sheet.hidden = true; };
+          const acc = Math.min(pos.coords.accuracy || 0, 2000);
+          if (!meMarker) {
+            accCircle = window.L.circle(ll, { radius: acc, color: '#2a7de1', weight: 1, fillColor: '#2a7de1', fillOpacity: 0.12, interactive: false }).addTo(map);
+            meMarker = window.L.marker(ll, { icon: window.L.divIcon({ className: '', html: '<div class="me-dot"></div>', iconSize: [16, 16], iconAnchor: [8, 8] }), interactive: false, zIndexOffset: 1000 }).addTo(map);
+          } else { meMarker.setLatLng(ll); accCircle.setLatLng(ll).setRadius(acc); }
+          setBtn('My location', true);
+          if (first && (center === 'always' || inGreece(ll))) map.setView(ll, center === 'always' ? 14 : 12);
+          first = false;
+        }, err => {
+          if (watch != null) navigator.geolocation.clearWatch(watch);
           watch = null;
-        }, { enableHighAccuracy: true, maximumAge: 15000 });
-      });
+          setBtn('My location', false);
+          if (center === 'always') message(err.code === 1
+            ? 'Location is blocked for this site. iPhone: Settings → Privacy → Location Services → Safari Websites → While Using. Android Chrome: tap the icon left of the address → Permissions → Location.'
+            : 'Couldn’t find your location. Check that location is on, then try again.');
+        }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 20000 });
+      };
+      locBtn.addEventListener('click', () => locate('always'));
+      const autoLocate = () => navigator.permissions?.query({ name: 'geolocation' }).then(p => { if (p.state === 'granted' && alive) locate('greece'); }).catch(() => {});
 
       return () => {
         alive = false;
